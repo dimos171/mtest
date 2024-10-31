@@ -15,7 +15,6 @@ public class QuickPushDataStructure<T> : IDataStructure<T>
         comparer = customComparer ?? Comparer<T>.Default;
     }
 
-    // Push operation - O(1) complexity, always adds node to the front
     public void Push(T value)
     {
         lock (lockObject)
@@ -26,7 +25,6 @@ public class QuickPushDataStructure<T> : IDataStructure<T>
         }
     }
 
-    // Pop operation - O(n), returns the maximum value
     public T Pop()
     {
         lock (lockObject)
@@ -37,31 +35,23 @@ public class QuickPushDataStructure<T> : IDataStructure<T>
             var maxNode = head;
             var maxNodePrev = (Node<T>)null;
 
-            // Traverse all the linked list looking for the max element.
             var current = head;
             var prev = (Node<T>)null;
             while (current != null)
             {
-                // Check if the current node has a larger value than maxNode
                 if (comparer.Compare(current.Value, maxNode.Value) > 0)
                 {
                     maxNode = current;
                     maxNodePrev = prev;
                 }
 
-                // Move pointers to the next node
                 prev = current;
                 current = current.Next;
             }
 
-            // Remove the maximum node. Consider 2 scenarios:
-            // 1. If Max Node is the 1st element: Move head to the next node
-            // 2. Else: Update Previos-to-Max-Node with whole tail of Max-Node
-            // Remove the maximum node
             if (ReferenceEquals(maxNode, head))
-                head = head.Next; // 
+                head = head.Next;
             else
-                // 
                 maxNodePrev.Next = maxNode.Next;
 
             return maxNode.Value;

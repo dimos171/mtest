@@ -27,6 +27,13 @@ public class DataStructuresUnitTests
     }
 
     [Fact]
+    public void QuickPopDataStructure_PopBeforePush_ThrowsInvalidOperationException()
+    {
+        var quickPop = new QuickPopDataStructure<int>();
+        Assert.Throws<InvalidOperationException>(() => quickPop.Pop());
+    }
+
+    [Fact]
     public void QuickPushDataStructure_IntValue_PopWithMaxValue()
     {
         var quickPush = new QuickPushDataStructure<int>();
@@ -45,6 +52,13 @@ public class DataStructuresUnitTests
     {
         var quickPush = new QuickPushDataStructure<int>();
         await DataStructure_ShouldBeThreadSafe(quickPush);
+    }
+
+    [Fact]
+    public void QuickPushDataStructure_PopBeforePush_ThrowsInvalidOperationException()
+    {
+        var quickPush = new QuickPushDataStructure<int>();
+        Assert.Throws<InvalidOperationException>(() => quickPush.Pop());
     }
 
     private void DataStructure_IntValue_PopWithMaxValue(IDataStructure<int> dataStructure)
