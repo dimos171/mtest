@@ -1,5 +1,5 @@
 ﻿
-///FOR MORE DETAILS PLEASE LOOK AT /UnitTests/DataStructuresUnitTests.cs
+///FOR MORE TEST CASES PLEASE LOOK AT /UnitTests/DataStructuresUnitTests.cs
 
 var struct1 = new QuickPopDataStructure<int>();
 Console.WriteLine("QuickPopDataStructure:");
